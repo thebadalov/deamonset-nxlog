@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ngxlog-daemonset
+  namespace: logging
+  labels:
+    k8s-app: ngxlog-logging
+spec:
+  selector:
+    matchLabels:
+      name: ngxlog-daemonset
+  template:
+    metadata:
+      labels:
+        name: ngxlog-daemonset
+    spec:
+      containers:
+      - name: ngxlog-daemonset
+        image: hub.docker.com/layers/thebadalov/nxlog-dockerfile:37
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
